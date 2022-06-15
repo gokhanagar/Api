@@ -29,6 +29,11 @@ public class Todo {
         this.title = title;
         this.completed = completed;
     }
+    public Todo(int userId,  String title, boolean completed) {
+        this.userId = userId;
+        this.title = title;
+        this.completed = completed;
+    }
 
     public int getUserId() {
         return userId;
