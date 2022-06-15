@@ -71,10 +71,10 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
         Todo actualTodo = response.as(Todo.class);
         System.out.println("Gelen actual data: " + actualTodo);
 
-        assertEquals("Beklnen data karsilasilan ile uyusmadi",expectedTodo.getUserId(),actualTodo.getUserId());
-        assertEquals("Beklnen data karsilasilan ile uyusmadi",expectedTodo.getTitle(),actualTodo.getTitle());
-        assertEquals("Beklnen data karsilasilan ile uyusmadi",expectedTodo.getId(),actualTodo.getId());
-        assertEquals("Beklnen data karsilasilan ile uyusmadi",expectedTodo.isCompleted(),actualTodo.isCompleted());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getUserId(),actualTodo.getUserId());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getTitle(),actualTodo.getTitle());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getId(),actualTodo.getId());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.isCompleted(),actualTodo.isCompleted());
 
 
 
