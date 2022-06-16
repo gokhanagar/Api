@@ -32,69 +32,28 @@ public class Post2 extends JsonPlaceHolderBaserUrl {
 
 
     @Test
-    public void post02(){
-       //Set the url
-       spec.pathParams("bir","todos");
+    public void post02() {
+        //Set the url
+        spec.pathParams("bir", "todos");
 
-       //Set the expected Data
-       Todo expectedTodo = new Todo(55,"Tidy your room",false);
+        //Set the expected Data
+        Todo expectedTodo = new Todo(55, "Tidy your room", false);
 
         //send the Post Request and get the response
-        Response response =given().spec(spec).contentType(ContentType.JSON).body(expectedTodo).when().post("/{bir}");
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedTodo).when().post("/{bir}");
         response.prettyPrint();
         expectedTodo.setId(201);
 
         Todo actualTodo = response.as(Todo.class);
 
         //Validate
-        assertEquals(expectedTodo.getUserId(),actualTodo.getUserId());
-        assertEquals(expectedTodo.getTitle(),actualTodo.getTitle());
-        assertEquals(expectedTodo.isCompleted(),actualTodo.isCompleted());
-        assertEquals(expectedTodo.getId(),actualTodo.getId());
-
-
-
-
-
-
-
+        assertEquals(expectedTodo.getUserId(), actualTodo.getUserId());
+        assertEquals(expectedTodo.getTitle(), actualTodo.getTitle());
+        assertEquals(expectedTodo.isCompleted(), actualTodo.isCompleted());
+        assertEquals(expectedTodo.getId(), actualTodo.getId());
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

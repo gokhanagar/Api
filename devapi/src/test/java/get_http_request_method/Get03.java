@@ -36,8 +36,8 @@ public class Get03 extends JsonPlaceHolderBaserUrl {
                 body("completed", equalTo(false)).body("userId", equalTo(2));
 
         response.then().assertThat().
-                body("title",equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
-                        "completed", equalTo(false),"userId", equalTo(2));
+                body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
+                        "completed", equalTo(false), "userId", equalTo(2));
     }
 
 

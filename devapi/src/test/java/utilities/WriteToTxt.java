@@ -7,68 +7,24 @@ import java.io.FileWriter;
 
 public class WriteToTxt {
 
-    public static void saveRegistrantData(String fileName, Registrant registrant){
+    public static void saveRegistrantData(String fileName, Registrant registrant) {
 
-        try{
+        try {
 
-            FileWriter fileWriter = new FileWriter(fileName,true);
+            FileWriter fileWriter = new FileWriter(fileName, true);
 
             BufferedWriter writer = new BufferedWriter(fileWriter);
-            writer.append(registrant.getFirstName()+","+registrant.getLastName()+","+registrant.getPassword()+
-                    ","+registrant.getSsn()+","+registrant.getEmail()+"\n");
+            writer.append(registrant.getFirstName() + "," + registrant.getLastName() + "," + registrant.getPassword() +
+                    "," + registrant.getSsn() + "," + registrant.getEmail() + "\n");
             writer.close();
 
-        }catch(Exception e){
+        } catch (Exception e) {
 
             e.printStackTrace();
         }
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

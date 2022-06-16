@@ -29,16 +29,16 @@ public class Patch01 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void patch01(){
+    public void patch01() {
         //Set the Url
-        spec.pathParams("bir", "todos","iki",198);
+        spec.pathParams("bir", "todos", "iki", 198);
 
         //Set the expected data
         Map<String, Object> expectedData = new HashMap<>();
-        expectedData.put("title","Tidy your room");
+        expectedData.put("title", "Tidy your room");
 
         //Send the Patch request and get the response
-       Response response =given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().patch("/{bir}/{iki}");
+        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).when().patch("/{bir}/{iki}");
         response.prettyPrint();
 
         //validate
@@ -46,15 +46,6 @@ public class Patch01 extends JsonPlaceHolderBaserUrl {
 
 
     }
-
-
-
-
-
-
-
-
-
 
 
 }

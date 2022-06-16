@@ -55,12 +55,12 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
     }
 
     @Test
-    public void testWithPojo(){
+    public void testWithPojo() {
         //Set the Url
         spec.pathParams("bir", "todos", "iki", 2);
 
         //Set the expected data
-        Todo expectedTodo = new Todo(1,2,"quis ut nam facilis et officia qui",false);
+        Todo expectedTodo = new Todo(1, 2, "quis ut nam facilis et officia qui", false);
 
         System.out.println(expectedTodo);
 
@@ -71,47 +71,13 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
         Todo actualTodo = response.as(Todo.class);
         System.out.println("Gelen actual data: " + actualTodo);
 
-        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getUserId(),actualTodo.getUserId());
-        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getTitle(),actualTodo.getTitle());
-        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.getId(),actualTodo.getId());
-        assertEquals("Beklenen data karsilasilan ile uyusmadi",expectedTodo.isCompleted(),actualTodo.isCompleted());
-
-
-
-
-
-
-
-
-
-
-
-
+        assertEquals("Beklenen data karsilasilan ile uyusmadi", expectedTodo.getUserId(), actualTodo.getUserId());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi", expectedTodo.getTitle(), actualTodo.getTitle());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi", expectedTodo.getId(), actualTodo.getId());
+        assertEquals("Beklenen data karsilasilan ile uyusmadi", expectedTodo.isCompleted(), actualTodo.isCompleted());
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

@@ -68,30 +68,10 @@ public class Get10 extends DummyBaseUrl {
         System.out.println("Data size: " + employees.getData().size());
 
         //Validate
-        assertTrue("24 records bulunmamakta", employees.getData().size()==24);
+        assertTrue("24 records bulunmamakta", employees.getData().size() == 24);
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

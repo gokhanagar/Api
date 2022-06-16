@@ -22,71 +22,26 @@ public class Delete01 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void delete01(){
+    public void delete01() {
 
         //Set the url
-        spec.pathParams("bir","todos","iki",198);
+        spec.pathParams("bir", "todos", "iki", 198);
 
         //Set the expected data
         Map<String, Object> expectedData = new HashMap<>();
 
         //Send the Delete request and get the response
-       Response response = given().spec(spec).when().delete("/{bir}/{iki}");
+        Response response = given().spec(spec).when().delete("/{bir}/{iki}");
 
         //validate
         response.then().assertThat().statusCode(200);
         response.prettyPrint();
 
-        Map<String,Object> actualData = response.as(HashMap.class);
+        Map<String, Object> actualData = response.as(HashMap.class);
         assertEquals(expectedData, actualData);
 
 
-
-
-
-
-
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

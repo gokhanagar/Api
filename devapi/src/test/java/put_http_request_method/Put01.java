@@ -34,18 +34,14 @@ public class Put01 extends JsonPlaceHolderBaserUrl {
      */
 
 
-
-
-
-
     @Test
-    public void put01(){
+    public void put01() {
 
         //set the url
-        spec.pathParams("bir", "todos","iki",198);
+        spec.pathParams("bir", "todos", "iki", 198);
 
         // Set the expected data
-        Map<String,Object> expectedData = expectedDataPut();
+        Map<String, Object> expectedData = expectedDataPut();
 
         //Send the Put and get the response
         Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).put("/{bir}/{iki}");
@@ -55,65 +51,33 @@ public class Put01 extends JsonPlaceHolderBaserUrl {
         //validate
         //1.way
         response.then().assertThat().statusCode(200).
-                body("userId",equalTo(21)).
-                body("title",equalTo("Wash the forks")).
-                body("completed",equalTo(false));
+                body("userId", equalTo(21)).
+                body("title", equalTo("Wash the forks")).
+                body("completed", equalTo(false));
 
         //2.way
-        Map<String,Object> actualData = response.as(HashMap.class);
+        Map<String, Object> actualData = response.as(HashMap.class);
 
-        assertEquals(expectedData.get("userId"),actualData.get("userId"));
-        assertEquals(expectedData.get("title"),actualData.get("title"));
-        assertEquals(expectedData.get("completed"),actualData.get("completed"));
+        assertEquals(expectedData.get("userId"), actualData.get("userId"));
+        assertEquals(expectedData.get("title"), actualData.get("title"));
+        assertEquals(expectedData.get("completed"), actualData.get("completed"));
 
         //3.way
         Todo actualTodo = response.as(Todo.class);
 
-        assertEquals(expectedData.get("userId"),actualTodo.getUserId());
-        assertEquals(expectedData.get("title"),actualTodo.getTitle());
-        assertEquals(expectedData.get("completed"),actualTodo.isCompleted());
+        assertEquals(expectedData.get("userId"), actualTodo.getUserId());
+        assertEquals(expectedData.get("title"), actualTodo.getTitle());
+        assertEquals(expectedData.get("completed"), actualTodo.isCompleted());
 
         //4.way
         JsonPath json = response.jsonPath();
 
         assertEquals(expectedData.get("userId"), json.getInt("userId"));
         assertEquals(expectedData.get("title"), json.getString("title"));
-        assertEquals(expectedData.get("completed"),json.getBoolean("completed"));
-
-
-
+        assertEquals(expectedData.get("completed"), json.getBoolean("completed"));
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

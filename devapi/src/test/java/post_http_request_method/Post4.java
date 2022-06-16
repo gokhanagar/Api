@@ -34,65 +34,26 @@ public class Post4 extends MedunnaBaseUrl {
      */
 
     @Test
-    public void post04(){
+    public void post04() {
         //Set the base url
-        spec.pathParams("bir","api","iki","register");
+        spec.pathParams("bir", "api", "iki", "register");
 
         //Set the expected Data
         Registrant registrant = new Registrant();
         Faker faker = new Faker();
         registrant.setFirstName(faker.name().firstName());
         registrant.setLastName(faker.name().lastName());
-        registrant.setPassword(faker.internet().password(8,25,true,true));
-        registrant.setEmail(registrant.getFirstName()+registrant.getLastName()+"@gmail.com");
-        registrant.setLogin(registrant.getFirstName()+registrant.getLastName());
+        registrant.setPassword(faker.internet().password(8, 25, true, true));
+        registrant.setEmail(registrant.getFirstName() + registrant.getLastName() + "@gmail.com");
+        registrant.setLogin(registrant.getFirstName() + registrant.getLastName());
         registrant.setSsn(faker.idNumber().ssnValid());
 
-        String fileName="C:/Users/gokha/IdeaProjects/devapi/test_data/RegistrantData.txt";
+        String fileName = "C:/Users/gokha/IdeaProjects/devapi/test_data/RegistrantData.txt";
 
-        saveRegistrantData(fileName,registrant);
-
-
-
-
-
-
-
-
+        saveRegistrantData(fileName, registrant);
 
 
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }

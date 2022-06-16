@@ -33,37 +33,26 @@ public class Post3 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void post03(){
+    public void post03() {
         //Set the base Url
-        spec.pathParams("bir","todos");
+        spec.pathParams("bir", "todos");
 
         //Set the expected data
-        Map<String,Object> expectedData = expectedDatasetup();
+        Map<String, Object> expectedData = expectedDatasetup();
 
         //Send the Post request and Get the response
-        Response response = given().spec(spec).auth().basic("admin","1234").contentType(ContentType.JSON).
+        Response response = given().spec(spec).auth().basic("admin", "1234").contentType(ContentType.JSON).
                 body(expectedData).when().post("/{bir}");
 
         response.prettyPrint();
 
         //validate
         response.then().assertThat().statusCode(201).
-                body("userId",equalTo(55),"title",equalTo("Tidy your room"),
-                        "completed",equalTo(false));
-
-
-
+                body("userId", equalTo(55), "title", equalTo("Tidy your room"),
+                        "completed", equalTo(false));
 
 
     }
-
-
-
-
-
-
-
-
 
 
 }

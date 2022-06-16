@@ -19,7 +19,7 @@ public class Get05 extends HerokuappBaseUrl {
     public void get05() {
 
         //Set the Url
-        spec.pathParam("bir","booking").queryParams("firstname","Jim","lastname","Jones");
+        spec.pathParam("bir", "booking").queryParams("firstname", "Jim", "lastname", "Jones");
 
         //Send the request and Get the response
         Response response = given().spec(spec).when().get("/{bir}");
@@ -28,24 +28,7 @@ public class Get05 extends HerokuappBaseUrl {
         response.then().assertThat().statusCode(200);
 
 
-
-
-
-
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 }
