@@ -19,6 +19,9 @@ public class Todo {
     private String title;
     private boolean completed;
 
+
+
+
     public Todo(){
 
     }
@@ -34,6 +37,11 @@ public class Todo {
         this.title = title;
         this.completed = completed;
     }
+
+
+
+
+
 
     public int getUserId() {
         return userId;
