@@ -18,15 +18,15 @@ public class Get10 extends DummyBaseUrl {
       5. Çalışan isminin "Airi Satou" olduğunu ,
       çalışan sayısının 24 olduğunu,
     Sondan 2. çalışanın maaşının 106450 olduğunu
-40,21 ve 19 yaslarında çalışanlar olup olmadığını
-11. Çalışan bilgilerinin
+    40,21 ve 19 yaslarında çalışanlar olup olmadığını
+    11. Çalışan bilgilerinin
     {
             “id”:”11”
              "employee_name": "Jena Gaines",
             "employee_salary": "90560",
             "employee_age": "30",
             "profile_image": "" }
-} gibi olduğunu test edin.
+        } gibi olduğunu test edin.
 */
 
     @Test
