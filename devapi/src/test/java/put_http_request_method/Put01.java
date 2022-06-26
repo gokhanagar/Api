@@ -44,7 +44,8 @@ public class Put01 extends JsonPlaceHolderBaserUrl {
         Map<String, Object> expectedData = expectedDataPut();
 
         //Send the Put and get the response
-        Response response = given().spec(spec).contentType(ContentType.JSON).body(expectedData).put("/{bir}/{iki}");
+        Response response = given().spec(spec).contentType(ContentType.JSON).
+                body(expectedData).when().put("/{bir}/{iki}");
 
         response.prettyPrint();
 

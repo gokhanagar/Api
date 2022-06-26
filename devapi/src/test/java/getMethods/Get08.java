@@ -60,7 +60,7 @@ public class Get08 extends DummyBaseUrl {
         //3)Maası 350000 den büyük olan tüm employee name’leri ekrana yazdırın ve
         //  bunların içerisinde “Charde Marshall” olduğunu test edin
 
-        List<String> isimList = json.getList("data.findAll{it.employee_salar< 350000 }.employee_name");
+        List<String> isimList = json.getList("data.findAll{it.employee_salary< 350000 }.employee_name");
         System.out.println(isimList);
 
         assertTrue(isimList.contains("Charde Marshall"));

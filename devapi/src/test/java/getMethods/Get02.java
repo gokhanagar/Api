@@ -69,5 +69,4 @@ public class Get02 extends HerokuappBaseUrl {
 
     }
 
-
 }

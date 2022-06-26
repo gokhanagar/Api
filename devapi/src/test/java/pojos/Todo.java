@@ -20,8 +20,6 @@ public class Todo {
     private boolean completed;
 
 
-
-
     public Todo(){
 
     }
@@ -37,9 +35,6 @@ public class Todo {
         this.title = title;
         this.completed = completed;
     }
-
-
-
 
 
 
