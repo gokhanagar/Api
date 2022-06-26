@@ -16,7 +16,7 @@ Feature:Api testing for CRUD operators
 
     Examples:
       | Name       | Gender | Email            | Status |
-      | John Doe 8 | male   | john23@gmail.com | active |
+      | John Doe 8 | male   | john29@gmail.com | active |
 
 
 
