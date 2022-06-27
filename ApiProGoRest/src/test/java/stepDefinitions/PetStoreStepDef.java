@@ -6,6 +6,7 @@ import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.junit.Assert;
+import pojos.PetStorePojo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import java.util.Map;
 public class PetStoreStepDef {
 
     Response response;
+
     @Given("user send GET request to {string}")
     public void userSendGETRequestTo(String endPoint) {
         RestAssured.baseURI = "https://petstore.swagger.io";
@@ -29,13 +31,14 @@ public class PetStoreStepDef {
     public void userValidateStatusCodeIs(int statusCode) {
 
         int actualStatusCode = response.getStatusCode();
-        Assert.assertEquals(statusCode,actualStatusCode);
+        Assert.assertEquals(statusCode, actualStatusCode);
     }
 
     @Then("user validates pet exist and sees information")
     public void userValidatesPetExistAndSeesInformation() {
 
-        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>(){});
+        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {
+        });
         ArrayList<Map<String, Object>> tagValues2 = (ArrayList<Map<String, Object>>) deserializedResponse.get("tags");
 
         ArrayList<Map<String, Object>> tagValues = response.jsonPath().get("tags");
@@ -57,10 +60,31 @@ public class PetStoreStepDef {
         System.out.println(tagValues.get(0).get("id"));
         System.out.println(categoryValues.get("id"));
         System.out.println(categoryValues.get("name"));
+        System.out.println("================================================");
+
+        //2. yol
+        Map<String, Object> deserializedResponse2 = response.jsonPath().get("$");
+        //$ isareti bizim yapimizin en temel seviyesini belirtir
+        ArrayList<Map<String, Object>> tagValues3 = response.jsonPath().get("tags");
+        Map<String, Object> categoryValues2 = response.jsonPath().get("category");
+        String tagName = response.jsonPath().getString("tags.name");
+        System.out.println(tagName);
 
 
+        System.out.println(deserializedResponse2);
+        System.out.println(deserializedResponse2.get("id"));
+        System.out.println(tagValues3.get(0).get("id"));
+
+        System.out.println("================================================");
+
+        //3. yol
+        PetStorePojo petStorePojo = response.as(PetStorePojo.class);
 
 
+        System.out.println(petStorePojo.getStatus());
+        System.out.println(petStorePojo.getTags());
+        System.out.println(petStorePojo.getCategory());
+        System.out.println(petStorePojo.getName());
 
 
     }

@@ -20,9 +20,9 @@ Feature:Api testing for CRUD operators
 
 
   Scenario Outline: PUT-UPDATE a new user
-    Given set api endpoint "public/v2/users/""<userid>"
-    And Update the user with request body "<Name>","<Gender>","<Email>","<Status>"
-    Then validate the status code "status code"
+    #Given set api endpoint "public/v2/users/""<userid>"
+    #And Update the user with request body "<Name>","<Gender>","<Email>","<Status>"
+    #Then validate the status code "status code"
     And validate the userId is not null
     And validate the user Name is "<Name>"
     And validate the user Gender is "<Gender>"
