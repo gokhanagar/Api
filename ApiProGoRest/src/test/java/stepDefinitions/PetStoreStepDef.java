@@ -8,6 +8,7 @@ import io.restassured.response.Response;
 import org.junit.Assert;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PetStoreStepDef {
@@ -39,6 +40,10 @@ public class PetStoreStepDef {
 
         ArrayList<Map<String, Object>> tagValues = response.jsonPath().get("tags");
         Map<String, Object> categoryValues = response.jsonPath().get("category");
+
+        List<String> photoUrlsList = response.jsonPath().get("photoUrls");
+        List<String> photoUrlsList2 = (List<String>) deserializedResponse.get("photoUrls");
+
 
         System.out.println(deserializedResponse);
         System.out.println(deserializedResponse.get("id"));

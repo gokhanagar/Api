@@ -1,6 +1,6 @@
 Feature: Pet store testing
 
   Scenario: Getting specific pet
-    Given user send GET request to "/v2/pet/1246"
+    Given user send GET request to "/v2/pet/1245"
     Then user validate status code is 200
     Then user validates pet exist and sees information

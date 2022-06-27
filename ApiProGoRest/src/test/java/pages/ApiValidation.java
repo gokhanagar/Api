@@ -47,6 +47,9 @@ public Response response;
                 .put();
         return response;
     }
+
+
+
     private String updatePostBody(String postBody, String title) {
         String body = "";
         try {
@@ -58,6 +61,8 @@ public Response response;
         }
         return body;
     }
+
+
     public Response postMethodCreate(String body, String title) {
         String requestBody = updatePostBody(body, title);
         Response response = given()
@@ -67,6 +72,7 @@ public Response response;
                 .post();
         return response;
     }
+    
     public String updatePostBody(String comment, String name, String email) {
         String body = "";
         try {
