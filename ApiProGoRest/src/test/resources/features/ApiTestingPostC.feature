@@ -12,7 +12,7 @@ Feature:Api testing for CRUD operators
 
     Examples:
       | EndpointPost                   | EndpointComment                   | userId | Body              | Title                  | Comment       | name    | email         | comment body    |
-      | public/v2/users/<userId>/posts | public/v2/users/<userId>/comments | 12   | Body post message | This is my first title | first comment | My name | asd@gmail.com | This is comment |
+      | public/v2/users/<userId>/posts | public/v2/users/<userId>/comments | 6396   | Body post message | This is my first title | first comment | My name | asd@gmail.com | This is comment |
 
 
 

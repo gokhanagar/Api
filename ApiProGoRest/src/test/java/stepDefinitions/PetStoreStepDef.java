@@ -21,6 +21,7 @@ public class PetStoreStepDef {
         RestAssured.baseURI = "https://petstore.swagger.io";
         RestAssured.basePath = endPoint;
 
+
         response = RestAssured.given()
                 .accept("application/json")
                 .when().get();
@@ -37,8 +38,7 @@ public class PetStoreStepDef {
     @Then("user validates pet exist and sees information")
     public void userValidatesPetExistAndSeesInformation() {
 
-        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {
-        });
+        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {});
         ArrayList<Map<String, Object>> tagValues2 = (ArrayList<Map<String, Object>>) deserializedResponse.get("tags");
 
         ArrayList<Map<String, Object>> tagValues = response.jsonPath().get("tags");

@@ -28,88 +28,39 @@ public class Get01 extends HerokuappBaseUrl {
      */
 
     @Test
-        public void get01(){
+    public void get01() {
 
-            //Set the url
-            spec.pathParams("bir","booking","iki",7);
+        //Set the url
+        spec.pathParams("bir", "booking", "iki", 7);
 
-            //Set the expected data
+        //Set the expected data
 
-            //Send the get request and get the response
-            Response response = given().spec(spec).when().get("/{bir}/{iki}");
-            response.prettyPrint();
+        //Send the get request and get the response
+        Response response = given().spec(spec).when().get("/{bir}/{iki}");
+        response.prettyPrint();
 
-            //1. Validation
-            //response.then().assertThat().statusCode(200).contentType(ContentType.JSON).
-            //        body("firstname",equalTo("Susan")).
-            //        body("lastname",equalTo("Smith")).
-            //        body("totalprice",equalTo(147)).
-            //        body("depositpaid",equalTo(true)).
-            //        body("bookingdates.checkin",equalTo("2021-08-10")).
-            //        body("bookingdates.checkout",equalTo("2022-01-15"));
+        //1. Validation
+        //response.then().assertThat().statusCode(200).contentType(ContentType.JSON).
+        //        body("firstname",equalTo("Susan")).
+        //        body("lastname",equalTo("Smith")).
+        //        body("totalprice",equalTo(147)).
+        //        body("depositpaid",equalTo(true)).
+        //        body("bookingdates.checkin",equalTo("2021-08-10")).
+        //        body("bookingdates.checkout",equalTo("2022-01-15"));
 
-            //2. Validation
-            JsonPath json = response.jsonPath();
-            System.out.println(json.getString("firstname"));
+        //2. Validation
+        JsonPath json = response.jsonPath();
+        System.out.println(json.getString("firstname"));
 
-            assertEquals(json.getString("firstname"),"Susan");
-            assertEquals(json.getString("lastname"),"Smith");
-            assertEquals(json.getString("totalprice"),"147");
-            assertTrue(json.getBoolean("depositpaid"));
-            assertEquals(json.getString("bookingdates.checkin"),"2021-08-10");
-            assertEquals(json.getString("bookingdates.checkout"),"2022-01-15");
-
-
+        assertEquals(json.getString("firstname"), "Susan");
+        assertEquals(json.getString("lastname"), "Smith");
+        assertEquals(json.getString("totalprice"), "147");
+        assertTrue(json.getBoolean("depositpaid"));
+        assertEquals(json.getString("bookingdates.checkin"), "2021-08-10");
+        assertEquals(json.getString("bookingdates.checkout"), "2022-01-15");
 
 
-
-
-
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 
 
 }
