@@ -2,10 +2,10 @@ package stepDefinitions;
 
 
 import io.cucumber.java.en.And;
+import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
-import static java.lang.Boolean.parseBoolean;
 import static org.junit.Assert.assertEquals;
 
 public class jsonPlaceHolderStepDefinitions {
@@ -15,22 +15,24 @@ public class jsonPlaceHolderStepDefinitions {
     @And("title is {string}")
     public void titleIs(String title) {
 
-        String actualTitle = response.jsonPath().getString("title");
-        assertEquals(title,actualTitle);
+        response = RestAssured.given().accept("application/json").when().get();
+        json = response.jsonPath();
+        assertEquals(title,json.getString("title"));
     }
 
     @And("completed is false")
     public void completedIsFalse() {
 
-        assertEquals(false,response.jsonPath().getBoolean("completed"));
+        assertEquals(false,json.getBoolean("completed"));
     }
 
 
-/*
+
     @And("userId is {int}")
     public void useridIs(int userId) {
 
         assertEquals(userId,json.getInt("userId"));
     }
-    */
+
+
 }

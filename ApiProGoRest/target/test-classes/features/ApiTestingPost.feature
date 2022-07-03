@@ -29,7 +29,6 @@ Feature:Api testing for CRUD operators
     And validate the user Email is "<Email>"
     And validate the user Status is "<Status>"
 
-
     Examples:
       | Name        | Gender | Email            | Status | userid |
       | John Doe 33 | female | john29@gmail.com | active | 13954  |
