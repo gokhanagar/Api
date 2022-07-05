@@ -24,7 +24,11 @@ Feature: heroku app testing
     And content type should be JSON
     Then user validates booking exist and sees information
 
-
+  Scenario: Getting specific booking4
+    When user sends a GET request to "/booking/8"
+    Then user validate status code should be 200
+    And content type should be JSON
+    Then user validates related booking exist and sees information
 
 
 

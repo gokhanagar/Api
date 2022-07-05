@@ -86,7 +86,6 @@ public class HerOkuAppstepDefinitions {
 
         response = RestAssured.given().accept("application/json").when().get();
         //1. way
-
         Map<String,Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>(){});
         Map<String,Object> actualResponse = (Map<String, Object>) deserializedResponse.get("bookingdates");
         System.out.println(deserializedResponse);
@@ -99,9 +98,7 @@ public class HerOkuAppstepDefinitions {
         assertEquals("2019-02-15",actualResponse.get("checkin"));
         assertEquals("2020-06-17",actualResponse.get("checkout"));
 
-
         //2. way
-
         JsonPath json = response.jsonPath();;
         assertEquals(expectedData.get("firstname"), json.get("firstname") );
         assertEquals(expectedData.get("lastname"), json.get("lastname") );
@@ -112,10 +109,22 @@ public class HerOkuAppstepDefinitions {
         assertEquals(actualResponse.get("checkout"),json.get("bookingdates.checkout"));
 
 
+    }
 
+    @Then("user validates related booking exist and sees information")
+    public void userValidatesRelatedBookingExistAndSeesInformation() {
 
-
-
-
+        response = RestAssured.given().accept("application/json").when().get();
+        //Set The expected Data
+        HerOkuAppData herOkuAppData = new HerOkuAppData();
+        Map<String,Object> dataKeyMap =  herOkuAppData.dataKeyMap("Eric","Wilson",493,true);
+        Map<String,Object> dataMap = herOkuAppData.dataMap("2017-03-23","2019-03-05");
+        //Do Assertions
+        HerOkuAppPojo herokuapp = response.as(HerOkuAppPojo.class);
+        assertEquals(dataKeyMap.get("firstname"),herokuapp.getFirstname());
+        assertEquals(dataKeyMap.get("lastname"),herokuapp.getLastname());
+        assertEquals(dataKeyMap.get("totalprice"),herokuapp.getTotalprice());
+        assertTrue(herokuapp.getDepositpaid());
+        System.out.println(herokuapp.getAdditionalneeds());
     }
 }
