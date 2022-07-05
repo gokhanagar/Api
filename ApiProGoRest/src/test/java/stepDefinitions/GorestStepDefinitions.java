@@ -6,7 +6,8 @@ import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import pojos.GoRestTestData;
+import Data.GoRestTestData;
+import pojos.GoRestPojo;
 
 import java.util.HashSet;
 import java.util.List;
@@ -115,4 +116,25 @@ public class GorestStepDefinitions {
     }
 
 
+    @Then("user validates gorest user body exist and sees information")
+    public void userValidatesGorestUserBodyExistAndSeesInformation() {
+        response = RestAssured.given().accept("application/json").when().get();
+
+        //Set the expected data
+        GoRestTestData dataKey = new GoRestTestData();
+        Map<String, String> dataKeyMap = dataKey.dataKeyMap("Purushottam Mehra", "purushottam_mehra@kub.co", "male", "inactive");
+        Map<String, Object> expectedDataMap = dataKey.expectedDataMap(null, dataKeyMap);
+
+        //Do assertions
+        GoRestPojo gorestPojo = response.as(GoRestPojo.class);
+        System.out.println(gorestPojo.getData());
+
+        assertEquals(dataKeyMap.get("name"),gorestPojo.getData().get("name"));
+        assertEquals(dataKeyMap.get("email"),gorestPojo.getData().get("email"));
+        assertEquals(dataKeyMap.get("gender"),gorestPojo.getData().get("gender"));
+        assertEquals(dataKeyMap.get("status"),gorestPojo.getData().get("status"));
+        assertEquals(expectedDataMap.get("meta"),gorestPojo.getMeta());
+
+
+    }
 }

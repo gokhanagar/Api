@@ -1,12 +1,16 @@
 package stepDefinitions;
 
+import Data.HerOkuAppData;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import pojos.HerOkuAppPojo;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import static org.junit.Assert.*;
@@ -26,34 +30,36 @@ public class HerOkuAppstepDefinitions {
 
     @Then("user validate status code should be {int}")
     public void userValidateStatusCodeShouldBe(int statusCode) {
-        int actualStatusCode = response.getStatusCode();
-        assertEquals(statusCode, actualStatusCode);
+       int actualStatusCode = response.getStatusCode();
+       assertEquals(statusCode,actualStatusCode);
 
     }
 
     @And("content type should be JSON")
     public void contentTypeShouldBeJSON() {
-        String actualContentType = response.getContentType();
-        assertEquals("application/json; charset=utf-8", actualContentType);
+
+        String actualContentType = response.contentType();
+        assertEquals("application/json; charset=utf-8",actualContentType);
+
     }
 
     @And("status line should be {string}")
     public void statusLineShouldBe(String statusLine) {
-        assertEquals(statusLine, response.getStatusLine());
 
+        assertEquals(statusLine,response.getStatusLine());
     }
+
 
     @And("response body contains {string}")
     public void responseBodyContains(String included) {
 
         assertTrue(response.asString().contains(included));
-
     }
 
     @And("response body does not contain {string}")
-    public void responseBodyDoesNotContain(String excluded) {
+    public void responseBodyDoesNotContain(String exluded) {
 
-        assertFalse(response.asString().contains(excluded));
+        assertFalse(response.asString().contains(exluded));
     }
 
     @And("server is {string}")
@@ -62,21 +68,53 @@ public class HerOkuAppstepDefinitions {
         assertEquals(server, response.getHeader("Server"));
     }
 
-
     @Then("user validates booking exist and sees information")
     public void userValidatesBookingExistAndSeesInformation() {
 
-        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {
-        });
-        Map<String, Object> actualData = (Map<String, Object>) deserializedResponse.get("bookingdates");
+        //Set the expected data
+        Map<String, Object> expectedData = new HashMap<String, Object>();
+        expectedData.put("firstname", "Jim");
+        expectedData.put("lastname", "Jackson");
+        expectedData.put("totalprice", 626);
+        expectedData.put("depositpaid", false);
+
+        Map<String, Object> bookingdates = new HashMap<String, Object>();
+        expectedData.put("checkin", "2019-02-15");
+        expectedData.put("checkout", "2020-06-17");
+
+        //===================================================================================
+
+        response = RestAssured.given().accept("application/json").when().get();
+        //1. way
+
+        Map<String,Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>(){});
+        Map<String,Object> actualResponse = (Map<String, Object>) deserializedResponse.get("bookingdates");
         System.out.println(deserializedResponse);
 
-        assertEquals("James", deserializedResponse.get("firstname"));
-        assertEquals("Brown", deserializedResponse.get("lastname"));
-        assertEquals(111, deserializedResponse.get("totalprice"));
-        assertEquals(true, deserializedResponse.get("depositpaid"));
-        assertEquals("2018-01-01", actualData.get("checkin"));
-        assertEquals("2019-01-01", actualData.get("checkout"));
+        assertEquals("Jim", deserializedResponse.get("firstname"));
+        assertEquals("Jackson", deserializedResponse.get("lastname"));
+        assertEquals(626, deserializedResponse.get("totalprice"));
+        assertEquals(false, deserializedResponse.get("depositpaid"));
+
+        assertEquals("2019-02-15",actualResponse.get("checkin"));
+        assertEquals("2020-06-17",actualResponse.get("checkout"));
+
+
+        //2. way
+
+        JsonPath json = response.jsonPath();;
+        assertEquals(expectedData.get("firstname"), json.get("firstname") );
+        assertEquals(expectedData.get("lastname"), json.get("lastname") );
+        assertEquals(expectedData.get("totalprice"), json.get("totalprice") );
+        assertEquals(expectedData.get("depositpaid"), json.get("depositpaid") );
+
+        assertEquals(actualResponse.get("checkin"),json.get("bookingdates.checkin"));
+        assertEquals(actualResponse.get("checkout"),json.get("bookingdates.checkout"));
+
+
+
+
+
 
 
     }

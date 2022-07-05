@@ -31,7 +31,7 @@ public class ApiSteps extends ApiValidation {
     public void userCreatesNewUserWithRequestBody(String name, String gender, String email, String status) {
         response = postMethod(name, gender, email, status);
         response.prettyPrint();
-
+        System.out.println("user creates new user with request body " + name + " " + gender + " " + email + " " + status);
     }
 
 
@@ -52,6 +52,7 @@ public class ApiSteps extends ApiValidation {
     public void validateTheUserIdIsNotNull() {
 
         int id = response.jsonPath().getInt("id");
+        System.out.println(id);
         Assert.assertTrue("id is empty", id != 0);
     }
 
@@ -98,7 +99,7 @@ public class ApiSteps extends ApiValidation {
     @And("Update the user with request body {string},{string},{string},{string}")
     public void updateTheUserWithRequestBody(String name, String gender, String email, String status) {
         response = putMethod(name, gender, email, status);
-
+        response.prettyPrint();
     }
 
     // Post and Comment scenario start from here
@@ -115,7 +116,7 @@ public class ApiSteps extends ApiValidation {
         response = postMethodCreate(body,title);
         response.prettyPrint();
         postId= response.jsonPath().get("id");
-
+        System.out.println(postId);
     }
 
 

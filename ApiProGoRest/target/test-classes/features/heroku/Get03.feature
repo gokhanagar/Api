@@ -9,7 +9,7 @@ Feature: Gorest co in testing
     Then user validates gorest user exist and sees information
 
 
-  Scenario: Getting specific day28abstraction2
+  Scenario: Getting specific data2
     When user sends a GET request to "/public/v1/users"
     Then the value of pagination limit is 20
     And  the current link should be "https://gorest.co.in/public/v1/users?page=1"
@@ -18,7 +18,10 @@ Feature: Gorest co in testing
     And "Vaishvi Gill", "Dharmaketu Saini", "Gauranga Pandey" are among the users
     And the female users are more than male users
 
-
+  Scenario: Getting specific data3
+    When user sends a GET request to "/public/v1/users/13"
+    Then user validate status code should be 200
+    Then user validates gorest user body exist and sees information
 
 
 

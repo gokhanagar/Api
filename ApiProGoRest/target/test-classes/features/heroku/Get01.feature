@@ -18,12 +18,11 @@ Feature: heroku app testing
     And response body does not contain "Twitter"
     And server is "Cowboy"
 
-
   Scenario: Getting specific booking3
-   When user sends a GET request to "/booking/7"
-   Then user validate status code should be 200
-   And content type should be JSON
-   Then user validates booking exist and sees information
+    When user sends a GET request to "/booking/7"
+    Then user validate status code should be 200
+    And content type should be JSON
+    Then user validates booking exist and sees information
 
 
 
