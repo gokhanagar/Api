@@ -1,6 +1,7 @@
 package getMethods;
 
 import base_urls.HerokuappBaseUrl;
+import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
@@ -29,7 +30,7 @@ public class Get01 extends HerokuappBaseUrl {
 
     @Test
     public void get01() {
-
+       
         //Set the url
         spec.pathParams("bir", "booking", "iki", 7);
 
