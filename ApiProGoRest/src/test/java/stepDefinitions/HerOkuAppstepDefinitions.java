@@ -6,6 +6,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import pojos.HerOkuAppPojo;
@@ -84,7 +85,7 @@ public class HerOkuAppstepDefinitions {
 
         //===================================================================================
 
-        response = RestAssured.given().accept("application/json").when().get();
+        response = RestAssured.given().contentType(ContentType.JSON).when().get();
         //1. way
         Map<String,Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>(){});
         Map<String,Object> actualResponse = (Map<String, Object>) deserializedResponse.get("bookingdates");
@@ -127,4 +128,44 @@ public class HerOkuAppstepDefinitions {
         assertTrue(herokuapp.getDepositpaid());
         System.out.println(herokuapp.getAdditionalneeds());
     }
+
+    //====================================================================
+    // Post method
+
+    @When("I send POST request to {string}")
+    public void iSendPOSTRequestTo(String endpoint) {
+        //1.Step: Set the URL
+      //  RestAssured.baseURI = "https://restful-booker.herokuapp.com";
+        RestAssured.basePath = endpoint;
+        System.out.println("set api endpoint " + endpoint);
+
+    }
+
+    @And("user creates a booking and sees information")
+    public void userCreatesABookingAndSeesInformation() {
+
+        //2.Step: Set the Expected Data
+        HerOkuAppData herOkuAppData = new HerOkuAppData();
+        Map<String,Object> bookingDatesMap = herOkuAppData.dataMap("2020-09-09", "2020-09-21");
+        Map<String, Object> expectedDataMap = herOkuAppData.expectedDataSetUp("Selim", "Ak", 11111, true, bookingDatesMap);
+
+        //3.Step: Send POST Request and get the Response
+        response = RestAssured.given().accept("application/json").body(expectedDataMap).
+                when().post();
+        response.prettyPrint();
+
+        //4.Step: Do Assertion
+        Map<String, Object> actualDataMap = response.as(HashMap.class);
+
+        assertEquals(expectedDataMap.get("firstname"), ((Map)actualDataMap.get("booking")).get("firstname"));
+        assertEquals(expectedDataMap.get("lastname"), ((Map)actualDataMap.get("booking")).get("lastname"));
+        assertEquals(expectedDataMap.get("totalprice"), ((Map)actualDataMap.get("booking")).get("totalprice"));
+        assertEquals(expectedDataMap.get("depositpaid"), ((Map)actualDataMap.get("booking")).get("depositpaid"));
+
+        assertEquals(bookingDatesMap.get("checkin"), ((Map)((Map)actualDataMap.get("booking")).get("bookingdates")).get("checkin"));
+        assertEquals(bookingDatesMap.get("checkout"), ((Map)((Map)actualDataMap.get("booking")).get("bookingdates")).get("checkout"));
+
+    }
+
+
 }

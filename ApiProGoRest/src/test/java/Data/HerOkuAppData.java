@@ -25,7 +25,18 @@ public class HerOkuAppData {
         return dataMap;
     }
 
+    public Map<String, Object> expectedDataSetUp(String firstname, String lastname, int totalprice, boolean depositpaid,  Map<String, Object> bookingdates){
 
+        Map<String, Object> expectedDataMap = new HashMap<>();
+        expectedDataMap.put("firstname", firstname);
+        expectedDataMap.put("lastname", lastname);
+        expectedDataMap.put("totalprice", totalprice);
+        expectedDataMap.put("depositpaid", depositpaid);
+        expectedDataMap.put("bookingdates", bookingdates);
+
+        return expectedDataMap;
+
+    }
 
 
 
