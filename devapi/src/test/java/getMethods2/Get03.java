@@ -26,7 +26,7 @@ public class Get03 extends JsonPlaceHolderBaserUrl {
    */
 
     @Test
-    public void get01() {
+    public void get03() {
         //Set the url
         spec.pathParams("first", "todos", "second", 23);
 
@@ -44,5 +44,18 @@ public class Get03 extends JsonPlaceHolderBaserUrl {
 
     }
 
+/*
+      Note 1: Assetion yaparken Java çalışmayı durdurduğunda hata sonrası kodlar çalışmaz.
+              Böylece hata sonrası assertion'lar hakkında bilgi sahibi olamayız.
+              Fakat hata öncesi assertion'lar geçmiştir.
 
+     Not 2: Eğer kodumuzu hata noktasında duracak şekilde yazarsak "Hard Assertion" yapmış oluyoruz.
+
+     Not 3: Eğer kodumuzu hata noktasında duramayacak şekilde yazarsak "soft Assertion" yapmış oluyoruz.
+
+     Not 4: Eğer çoklu body() methodu içinde assert yaparsak "Hard Assert",
+            tek body() methodu içinde assert yaparsak "Soft Assert"  yapmış oluyoruz.
+
+
+ */
 }
