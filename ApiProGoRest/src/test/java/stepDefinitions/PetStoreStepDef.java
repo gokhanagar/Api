@@ -4,6 +4,7 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import org.junit.Assert;
 import pojos.PetStorePojo;
@@ -11,6 +12,8 @@ import pojos.PetStorePojo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import static org.junit.Assert.assertEquals;
 
 public class PetStoreStepDef {
 
@@ -82,10 +85,27 @@ public class PetStoreStepDef {
 
 
         System.out.println(petStorePojo.getStatus());
-        System.out.println(petStorePojo.getTags());
+        System.out.println(petStorePojo.getTags().get(0));
         System.out.println(petStorePojo.getCategory());
         System.out.println(petStorePojo.getName());
 
+        //4. way JsonPath
+        JsonPath json= response.jsonPath();
+        json.prettyPrint();
+
+        assertEquals(13, json.getInt("id"));
+        assertEquals(2, json.getInt("category.id"));
+        assertEquals("bird", json.getString("category.name"));
+        System.out.println(json.getString("category.name"));
+
+
+        assertEquals("ross",json.getString("name"));
+        assertEquals("https://www.birdlife.org/birds/eagle/",json.getString("photoUrls[0]"));
+
+        assertEquals(1, json.getInt("tags[0].id"));
+        assertEquals("eagle",json.getString("tags[0].name"));
+
+        assertEquals("available",json.getString("status"));
 
     }
 }

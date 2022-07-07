@@ -99,7 +99,7 @@ public class HerOkuAppstepDefinitions {
         assertEquals("2020-06-17",actualResponse.get("checkout"));
 
         //2. way
-        JsonPath json = response.jsonPath();;
+        JsonPath json = response.jsonPath();
         assertEquals(expectedData.get("firstname"), json.get("firstname") );
         assertEquals(expectedData.get("lastname"), json.get("lastname") );
         assertEquals(expectedData.get("totalprice"), json.get("totalprice") );
