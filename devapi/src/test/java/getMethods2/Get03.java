@@ -1,6 +1,7 @@
 package getMethods2;
 
 import base_urls.JsonPlaceHolderBaserUrl;
+import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.junit.Test;
 
@@ -41,6 +42,16 @@ public class Get03 extends JsonPlaceHolderBaserUrl {
                 body("title", equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
                         "completed", equalTo(false), "userId", equalTo(2));
 
+
+        //2. Yol:
+        response.
+                then().
+                assertThat().
+                statusCode(200).
+                contentType(ContentType.JSON).
+                body("title",equalTo("et itaque necessitatibus maxime molestiae qui quas velit"),
+                        "completed", equalTo(false),
+                        "userId", equalTo(2));
 
     }
 

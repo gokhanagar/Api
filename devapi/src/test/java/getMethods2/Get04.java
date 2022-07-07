@@ -6,6 +6,9 @@ import io.restassured.response.Response;
 import org.junit.Test;
 
 import static io.restassured.RestAssured.given;
+import static org.hamcrest.CoreMatchers.hasItem;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.Matchers.hasSize;
 
 public class Get04 extends JsonPlaceHolderBaserUrl {
     /*
@@ -28,9 +31,9 @@ public class Get04 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void get04(){
+    public void get04() {
         //1. Set the url
-        spec.pathParam("first","todos");
+        spec.pathParam("first", "todos");
 
         //2. Set the expected data
 
@@ -39,9 +42,16 @@ public class Get04 extends JsonPlaceHolderBaserUrl {
         response.prettyPrint();
 
         //4. Do assertions
+        response.
+                then().
+                assertThat().
+                statusCode(200).
+                contentType(ContentType.JSON).
+                body("id", hasSize(200),
+                        "title", hasItem("quis eius est sint explicabo"),
+                        "userId", hasItems(2, 7, 9));
 
     }
-
 
 
 }
