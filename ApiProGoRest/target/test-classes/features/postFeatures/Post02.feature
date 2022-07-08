@@ -6,3 +6,16 @@ Feature: heroku app testing
   Scenario: Creating a specific booking1
     When I send POST request to "/todos"
     And user creates a booking and see information
+
+  Scenario:Creating a specific booking2
+    When I send POST request to "/todos"
+    And user creates a booking and see informationn
+
+
+
+
+
+
+
+
+

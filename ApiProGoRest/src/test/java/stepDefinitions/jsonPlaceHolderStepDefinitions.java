@@ -8,6 +8,7 @@ import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import pojos.JsonPlaceHolderPojo;
 
 
 import java.util.HashMap;
@@ -26,22 +27,21 @@ public class jsonPlaceHolderStepDefinitions {
 
         response = RestAssured.given().accept("application/json").when().get();
         json = response.jsonPath();
-        assertEquals(title,json.getString("title"));
+        assertEquals(title, json.getString("title"));
     }
 
     @And("completed is false")
     public void completedIsFalse() {
 
-        assertEquals(false,json.getBoolean("completed"));
+        assertEquals(false, json.getBoolean("completed"));
     }
-
 
 
     @And("userId is {int}")
     public void useridIs(int userId) {
         response = RestAssured.given().accept("application/json").when().get();
         json = response.jsonPath();
-        assertEquals(userId,json.getInt("userId"));
+        assertEquals(userId, json.getInt("userId"));
     }
 
 
@@ -96,10 +96,10 @@ public class jsonPlaceHolderStepDefinitions {
 
         //Assert that "delectus aut autem" is one of the titles whose id is less than 5
         //1.Way:
-        assertTrue("Expected title is not among them",titles.contains(title));
+        assertTrue("Expected title is not among them", titles.contains(title));
 
         //2. way
-        assertTrue(titles.stream().anyMatch(t-> t.equals(title)));
+        assertTrue(titles.stream().anyMatch(t -> t.equals(title)));
 
     }
 
@@ -135,11 +135,26 @@ public class jsonPlaceHolderStepDefinitions {
         assertEquals(expectedDataMap.get("userId"), actualDataMap.get("userId"));
         assertEquals(expectedDataMap.get("title"), actualDataMap.get("title"));
         assertEquals(expectedDataMap.get("completed"), actualDataMap.get("completed"));
+    }
 
 
+    @And("user creates a booking and see informationn")
+    public void userCreatesABookingAndSeeInformationn() {
+
+        //Set the expected data
+        JsonPlaceHolderPojo expectedBody = new JsonPlaceHolderPojo(55, "Tidy your room", false);
+
+        //Send Post request and get the response
+        response = RestAssured.given().contentType(ContentType.JSON).body(expectedBody).when().post();
+        response.prettyPrint();
+
+        //Do assertions
+        JsonPlaceHolderPojo actualBody = response.as(JsonPlaceHolderPojo.class);
 
 
-
+        assertEquals(expectedBody.getUserId(), actualBody.getUserId());
+        assertEquals(expectedBody.getTitle(), actualBody.getTitle());
+        assertEquals(expectedBody.getCompleted(), actualBody.getCompleted());
 
 
     }
