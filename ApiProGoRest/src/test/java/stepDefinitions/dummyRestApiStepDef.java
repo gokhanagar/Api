@@ -79,5 +79,41 @@ public class dummyRestApiStepDef {
 
     }
 
+    //====================================================================================
+    // Post methods
+
+    @And("user creates a booking")
+    public void userCreatesABooking() {
+
+
+
+
+
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 }

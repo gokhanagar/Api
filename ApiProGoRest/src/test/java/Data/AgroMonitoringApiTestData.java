@@ -1,11 +1,12 @@
 package Data;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class AgroMonitoringApiTestData {
 
-    public float coordinates[][][] = {
+    public float[][][] coordinates = {
                                        {
                                           {-121.1958F,37.6683F},
                                           {-121.1779F,37.6687F},
@@ -13,7 +14,9 @@ public class AgroMonitoringApiTestData {
                                           {-121.1958F,37.6792F},
                                           {-121.1958F,37.6683F}
                                                                  }
-                                                                   };
+                                                                   }; //md array
+
+
     public Map<String, Object> geometrySetUp(){
 
         Map<String, Object> geometry = new HashMap<>();
