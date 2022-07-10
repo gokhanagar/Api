@@ -1,9 +1,14 @@
 package stepDefinitions;
 
+import Data.DummyApiDataPojo;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
+import pojos.DummyApiResponseBodyPojo;
+import utilities.JsonUtil;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -84,13 +89,24 @@ public class dummyRestApiStepDef {
 
     @And("user creates a booking")
     public void userCreatesABooking() {
+        //Set the expected data
+        DummyApiDataPojo dummyApiDataPojo = new DummyApiDataPojo("Tom Hanks", 111111, 23, "Perfect image");
+        DummyApiResponseBodyPojo expectedData = new DummyApiResponseBodyPojo("success", dummyApiDataPojo, "Successfully! Record has been added.");
 
+        response = RestAssured.given().contentType(ContentType.JSON).body(dummyApiDataPojo).when().post();
+        response.prettyPrint();
 
-
-
-
+        DummyApiResponseBodyPojo actualData = JsonUtil.convertJsonToJavaObject(response.asString(),DummyApiResponseBodyPojo.class);
+        assertEquals(expectedData.getStatus(), actualData.getStatus());
+        assertEquals(expectedData.getMessage(), actualData.getMessage());
+        assertEquals(expectedData.getData().getEmployee_name(), actualData.getData().getEmployee_name());
+        assertEquals(expectedData.getData().getEmployee_salary(), actualData.getData().getEmployee_salary());
+        assertEquals(expectedData.getData().getEmployee_age(), actualData.getData().getEmployee_age());
+        assertEquals(expectedData.getData().getProfile_image(), actualData.getData().getProfile_image());
 
     }
+
+
 
 
 

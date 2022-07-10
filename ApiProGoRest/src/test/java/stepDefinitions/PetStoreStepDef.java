@@ -107,5 +107,11 @@ public class PetStoreStepDef {
 
         assertEquals("available",json.getString("status"));
 
+
+        List<Map<String, Object>> tags = new ArrayList<Map<String, Object>> ();
+
+
+
+
     }
 }
