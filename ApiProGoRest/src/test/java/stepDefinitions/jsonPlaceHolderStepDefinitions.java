@@ -4,6 +4,8 @@ package stepDefinitions;
 import Data.HerOkuAppData;
 import Data.JsonPlaceHolderTestData;
 import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.path.json.JsonPath;
@@ -15,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static org.hamcrest.Matchers.equalTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -155,6 +158,106 @@ public class jsonPlaceHolderStepDefinitions {
         assertEquals(expectedBody.getUserId(), actualBody.getUserId());
         assertEquals(expectedBody.getTitle(), actualBody.getTitle());
         assertEquals(expectedBody.getCompleted(), actualBody.getCompleted());
+
+
+    }
+    //=================================================================================
+    // Put method
+
+    @When("I send PUT request to {string}")
+    public void iSendPUTRequestTo(String endPoint) {
+
+        RestAssured.basePath = endPoint;
+        System.out.println(endPoint);
+    }
+
+    @And("user updates a request and sees information")
+    public void userUpdatesARequestAndSeesInformation() {
+
+        //Set the expected data
+        JsonPlaceHolderTestData expectedData = new JsonPlaceHolderTestData();
+        Map<String, Object> expectedDataMap = expectedData.expectedDataWithAllKeys(21, "Wash the dishes", false);
+
+        //Send the put request
+        response = RestAssured.given().contentType(ContentType.JSON).body(expectedDataMap).when().put();
+        response.prettyPrint();
+
+        //4.Step: Do Assertions
+        Map<String, Object> actualDataMap = response.as(HashMap.class);
+
+        assertEquals(expectedDataMap.get("userId"), actualDataMap.get("userId"));
+        assertEquals(expectedDataMap.get("completed"), actualDataMap.get("completed"));
+        assertEquals(expectedDataMap.get("title"), actualDataMap.get("title"));
+
+    }
+    //====================================================================================
+    //Patch method
+
+    @When("I send PATCH request to {string}")
+    public void iSendPATCHRequestTo(String endpoint) {
+
+        RestAssured.basePath = endpoint;
+    }
+
+    @And("user update a request and see information")
+    public void userUpdateARequestAndSeeInformation() {
+
+        //Set the expected data
+        JsonPlaceHolderTestData requestBody = new JsonPlaceHolderTestData();
+        Map<String, Object> requestBodyMap = requestBody.expectedDataWithMissingKeys(null, "Wash the dishes", null);
+
+        //3.Step: Send the PATCH Request and get the response
+        response = RestAssured.given().accept("application/json").when().patch();
+        response.prettyPrint();
+
+        //4. Step: Do Assertions
+        //1.Way:
+        response.then().assertThat().statusCode(200).body("title", equalTo(requestBodyMap.get("title")));
+
+        //When you do PATCH Assertion, just the data you updated should be asserted. But if someone insists on assert all parts do the following
+        Map<String, Object> MapToAssertAllDetails = requestBody.expectedDataWithAllKeys(10, "Wash the dishes", true);
+        response.then().assertThat().statusCode(200).body("title", equalTo(MapToAssertAllDetails.get("title")),
+                "userId", equalTo(MapToAssertAllDetails.get("userId")),
+                "completed", equalTo(MapToAssertAllDetails.get("completed")));
+
+    }
+
+
+    @When("I send DELETE request to the url {string}")
+    public void iSendDELETERequestToTheUrl(String endPoint) {
+
+        RestAssured.basePath = endPoint;
+    }
+
+    @Then("response body is")
+    public void responseBodyIs() {
+
+        //2.Step: Set the Expected Data
+        Map<String, Object> expectedMap = new HashMap<>();
+
+        //3.Step: Send DELETE Request and get the Response
+        response = RestAssured.given().contentType(ContentType.JSON).when().delete();
+        response.prettyPrint();
+
+        //4.Step: Do Assertion
+        //1.Way:
+        Map<String, Object> actualMap = response.as(HashMap.class);
+        response.then().assertThat().statusCode(200);
+        assertEquals(expectedMap, actualMap);
+
+        //2.Way:
+        response.then().assertThat().statusCode(200);
+        assertTrue(actualMap.size() == 0);
+        assertTrue(actualMap.isEmpty());
+
+            /*
+
+            How to automate "DELETE Request" in API Testing?
+            i)Create new data by using "POST Request"
+            ii)Use "DELETE Request" to delete newly created data.
+
+            Note: Do not use "DELETE Request" for the existing data, create your own data then delete it.
+            */
 
 
     }

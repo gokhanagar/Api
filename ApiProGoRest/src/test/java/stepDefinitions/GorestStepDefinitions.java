@@ -135,6 +135,6 @@ public class GorestStepDefinitions {
         assertEquals(dataKeyMap.get("status"),gorestPojo.getData().get("status"));
         assertEquals(expectedDataMap.get("meta"),gorestPojo.getMeta());
 
-
     }
+
 }

@@ -10,10 +10,8 @@ import io.restassured.response.Response;
 import pojos.DummyApiResponseBodyPojo;
 import utilities.JsonUtil;
 
-import java.util.Collections;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -93,7 +91,7 @@ public class dummyRestApiStepDef {
         DummyApiDataPojo dummyApiDataPojo = new DummyApiDataPojo("Tom Hanks", 111111, 23, "Perfect image");
         DummyApiResponseBodyPojo expectedData = new DummyApiResponseBodyPojo("success", dummyApiDataPojo, "Successfully! Record has been added.");
 
-        response = RestAssured.given().contentType(ContentType.JSON).body(dummyApiDataPojo).when().post();
+        response = RestAssured.given().contentType(ContentType.JSON).body(dummyApiDataPojo).when().put();
         response.prettyPrint();
 
         DummyApiResponseBodyPojo actualData = JsonUtil.convertJsonToJavaObject(response.asString(),DummyApiResponseBodyPojo.class);
@@ -105,31 +103,22 @@ public class dummyRestApiStepDef {
         assertEquals(expectedData.getData().getProfile_image(), actualData.getData().getProfile_image());
 
     }
+    //========================================================================================================
+    //Put method
 
+    @And("user update a request and sees information")
+    public void userUpdateARequestAndSeesInformation() {
 
+       //Set the expected data
+        DummyApiDataPojo expectedData = new DummyApiDataPojo("Tom Hanks",11111,23,"Perfect image");
 
+        //Send the put request
+        response = RestAssured.given().accept(ContentType.JSON).body(expectedData).when().put();
+        response.prettyPrint();
 
+        //Do assertions
+        HashMap<String,Object> actualData = response.as(HashMap.class);
+        assertEquals(expectedData.getEmployee_name(),actualData.get("employee_name"));
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    }
 }
