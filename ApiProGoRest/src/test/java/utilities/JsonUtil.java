@@ -9,12 +9,12 @@ public class JsonUtil {
 
     private static ObjectMapper mapper;
 
-    static{
+    static {
         mapper = new ObjectMapper();
     }
 
     //1.Method: This method will convert Json Data to Java Object (De-Serialization)
-    public static <T> T convertJsonToJavaObject(String json, Class<T> cls){ //Generic Method
+    public static <T> T convertJsonToJavaObject(String json, Class<T> cls) { //Generic Method
 
         T javaResult = null;
 
@@ -28,7 +28,7 @@ public class JsonUtil {
     }
 
     //2.Method: This method will convert Java Object to Json Data (Serialization)
-    public static String convertJavaObjectToJson(Object obj){
+    public static String convertJavaObjectToJson(Object obj) {
 
         String jsonResult = null;
 

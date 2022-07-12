@@ -7,13 +7,3 @@ Feature: Json Place holder testing
     When I send DELETE request to the url "/todos/198"
     Then response body is
 
-
-
-
-
-
-
-
-
-
-
