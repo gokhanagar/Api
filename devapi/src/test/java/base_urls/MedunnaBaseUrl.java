@@ -6,7 +6,6 @@ import org.junit.Before;
 
 public class MedunnaBaseUrl {
 
-
     protected RequestSpecification spec;
 
     @Before()

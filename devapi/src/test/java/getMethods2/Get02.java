@@ -25,16 +25,16 @@ public class Get02 {
             Server is "Cowboy"
      */
 
-   @Test
-   public void get02(){
+    @Test
+    public void get02() {
 
-       //1. Set the url
-       String url = "https://restful-booker.herokuapp.com/booking/10001";
+        //1. Set the url
+        String url = "https://restful-booker.herokuapp.com/booking/10001";
 
-       //2. Set the expected data
+        //2. Set the expected data
 
-       //3. Type code to send request
-       Response response =given().when().get(url);
+        //3. Type code to send request
+        Response response = given().when().get(url);
         response.prettyPrint();
 
         //4. Do assertions
@@ -43,23 +43,9 @@ public class Get02 {
         assertTrue(response.asString().contains("Not Found"));
         assertFalse(response.asString().contains("facebook"));
 
-       assertTrue(response.header("Server").equals("Cowboy"));
+        assertTrue(response.header("Server").equals("Cowboy"));
 
 
-
-
-
-
-
-
-
-
-
-   }
-
-
-
-
-
+    }
 
 }

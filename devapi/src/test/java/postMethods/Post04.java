@@ -52,5 +52,4 @@ public class Post04 extends JsonPlaceHolderBaserUrl {
 
     }
 
-
 }
