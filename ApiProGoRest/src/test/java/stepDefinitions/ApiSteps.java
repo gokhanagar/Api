@@ -111,26 +111,25 @@ public class ApiSteps extends ApiValidation {
     }
 
     int postId;
+
     @And("create a post with given userId and create one {string} and {string}")
-    public void createAPostWithGivenUserIdAndCreateOneTitle(String body,String title) {
-        response = postMethodCreate(body,title);
+    public void createAPostWithGivenUserIdAndCreateOneTitle(String body, String title) {
+        response = postMethodCreate(body, title);
         response.prettyPrint();
-        postId= response.jsonPath().get("id");
+        postId = response.jsonPath().get("id");
         System.out.println(postId);
     }
-
 
 
     @When("user sets {string} post and create one {string} using {string} {string},{string}, {string}")
     public void userSetsPostAndCreateOneUsing(String endpointComment, String comment, String userId, String name, String email, String commentBody) {
 
-    endpointComment = endpointComment.replaceAll(userId, String.valueOf(postId));
-    RestAssured.basePath = endpointComment;
-    response = postMethodComment(comment,name,email);
-    response.prettyPrint();
+        endpointComment = endpointComment.replaceAll(userId, String.valueOf(postId));
+        RestAssured.basePath = endpointComment;
+        response = postMethodComment(comment, name, email);
+        response.prettyPrint();
 
     }
-
 
 
     @Then("verify that post and comment created {string} {string}")
@@ -138,18 +137,13 @@ public class ApiSteps extends ApiValidation {
 
         String actualName = response.jsonPath().get("name");
         String actualEmail = response.jsonPath().get("email");
-        Assert.assertEquals(name,actualName);
-        Assert.assertEquals(email,actualEmail);
+        Assert.assertEquals(name, actualName);
+        Assert.assertEquals(email, actualEmail);
         System.out.println("Assertion succesful");
     }
 
 
-
-
-
-
-
-    }
+}
 
 
 

@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
 public class dummyRestApiStepDef {
     Response response;
     JsonPath json;
+
     @And("there are {int} employees")
     public void thereAreEmployees(int numberOfEmployees) {
         response = RestAssured.given().accept("application/json").when().get();
@@ -35,22 +36,22 @@ public class dummyRestApiStepDef {
         employees.add(employee1);
         employees.add(employee2);
 
-       assertTrue(json.getList("data.findAll{it.employee_name}.employee_name").containsAll(employees));
+        assertTrue(json.getList("data.findAll{it.employee_name}.employee_name").containsAll(employees));
 
     }
 
     @And("the greatest age is {int}")
     public void theGreatestAgeIs(int age) {
-       List<Integer> ageList =  json.getList("data.findAll{it.employee_age}.employee_age");
+        List<Integer> ageList = json.getList("data.findAll{it.employee_age}.employee_age");
         Collections.sort(ageList);
-        assertEquals(age,(int)ageList.get(ageList.size() - 1));
+        assertEquals(age, (int) ageList.get(ageList.size() - 1));
     }
 
     @And("the name of the lowest age is {string}")
     public void theNameOfTheLowestAgeIs(String nameOfEmployee) {
-        List<Integer> ageList =  json.getList("data.findAll{it.employee_age}.employee_age");
+        List<Integer> ageList = json.getList("data.findAll{it.employee_age}.employee_age");
         Collections.sort(ageList);
-        String groovyString = "data.findAll{it.employee_age==" + ageList.get(0)+"}.employee_name";
+        String groovyString = "data.findAll{it.employee_age==" + ageList.get(0) + "}.employee_name";
 
         System.out.println(groovyString);
         assertEquals("[Tatyana Fitzpatrick]", json.getString(groovyString));
@@ -66,18 +67,18 @@ public class dummyRestApiStepDef {
 
         //1. way to calculate the sum
         int sum1 = 0;
-        for(Integer each : salaryList){
+        for (Integer each : salaryList) {
             sum1 += each;
         }
-        System.out.println("sum1 :" +sum1);
-        assertEquals(salary,sum1);
+        System.out.println("sum1 :" + sum1);
+        assertEquals(salary, sum1);
 
         //2.way to calculate the sum
-        int sum2 = salaryList.stream().reduce(0,(x,y)-> x+y);
-        System.out.println("sum2 :" +  sum2);
+        int sum2 = salaryList.stream().reduce(0, (x, y) -> x + y);
+        System.out.println("sum2 :" + sum2);
 
         //3. way to calculate the sum
-        int sum3 = salaryList.stream().reduce(0,Math::addExact);
+        int sum3 = salaryList.stream().reduce(0, Math::addExact);
         System.out.println("sum3 :" + sum3);
 
     }
@@ -94,7 +95,7 @@ public class dummyRestApiStepDef {
         response = RestAssured.given().contentType(ContentType.JSON).body(dummyApiDataPojo).when().put();
         response.prettyPrint();
 
-        DummyApiResponseBodyPojo actualData = JsonUtil.convertJsonToJavaObject(response.asString(),DummyApiResponseBodyPojo.class);
+        DummyApiResponseBodyPojo actualData = JsonUtil.convertJsonToJavaObject(response.asString(), DummyApiResponseBodyPojo.class);
         assertEquals(expectedData.getStatus(), actualData.getStatus());
         assertEquals(expectedData.getMessage(), actualData.getMessage());
         assertEquals(expectedData.getData().getEmployee_name(), actualData.getData().getEmployee_name());
@@ -109,16 +110,16 @@ public class dummyRestApiStepDef {
     @And("user update a request and sees information")
     public void userUpdateARequestAndSeesInformation() {
 
-       //Set the expected data
-        DummyApiDataPojo expectedData = new DummyApiDataPojo("Tom Hanks",11111,23,"Perfect image");
+        //Set the expected data
+        DummyApiDataPojo expectedData = new DummyApiDataPojo("Tom Hanks", 11111, 23, "Perfect image");
 
         //Send the put request
         response = RestAssured.given().accept(ContentType.JSON).body(expectedData).when().put();
         response.prettyPrint();
 
         //Do assertions
-        HashMap<String,Object> actualData = response.as(HashMap.class);
-        assertEquals(expectedData.getEmployee_name(),actualData.get("employee_name"));
+        HashMap<String, Object> actualData = response.as(HashMap.class);
+        assertEquals(expectedData.getEmployee_name(), actualData.get("employee_name"));
 
     }
 }

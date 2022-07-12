@@ -6,7 +6,7 @@ import java.util.Map;
 
 public class GoRestTestData {
 
-    public Map<String, String> dataKeyMap(String name, String email, String gender, String status){
+    public Map<String, String> dataKeyMap(String name, String email, String gender, String status) {
 
         Map<String, String> dataKeyMap = new HashMap<>();
         dataKeyMap.put("name", name);
@@ -17,7 +17,7 @@ public class GoRestTestData {
         return dataKeyMap;
     }
 
-    public Map<String, Object> expectedDataMap(Object meta, Map<String, String> dataKeyMap){
+    public Map<String, Object> expectedDataMap(Object meta, Map<String, String> dataKeyMap) {
 
         Map<String, Object> expectedDataMap = new HashMap<>();
         expectedDataMap.put("meta", meta);
@@ -25,7 +25,6 @@ public class GoRestTestData {
 
         return expectedDataMap;
     }
-
 
 
 }

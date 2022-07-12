@@ -10,6 +10,7 @@ import io.restassured.response.Response;
 import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
+
 public class agroMonitoringStepDef {
     Response response;
 
@@ -51,8 +52,6 @@ public class agroMonitoringStepDef {
         //To assert "area" value you can use both of the followings
         assertEquals(json.get("area").toString(), requestBodyMap.get("area").toString());
         assertEquals(json.getDouble("area"), (Double) requestBodyMap.get("area"), 0.0);
-
-
 
 
     }

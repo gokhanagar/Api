@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 public class GorestStepDefinitions {
     Response response;
     JsonPath json;
+
     @Then("user validates gorest user exist and sees information")
     public void userValidatesGorestUserExistAndSeesInformation() {
 
@@ -34,15 +35,16 @@ public class GorestStepDefinitions {
                 when().get();
 
         // Do assertion
-        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {});
+        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {
+        });
         Map<String, Object> actualResponse = (Map<String, Object>) deserializedResponse.get("data");
 
 
-        assertEquals(expectedDataMap.get("meta"),deserializedResponse.get("meta"));
-        assertEquals(dataKeyMap.get("name"),actualResponse.get("name"));
-        assertEquals(dataKeyMap.get("email"),actualResponse.get("email"));
-        assertEquals(dataKeyMap.get("gender"),actualResponse.get("gender"));
-        assertEquals(dataKeyMap.get("status"),actualResponse.get("status"));
+        assertEquals(expectedDataMap.get("meta"), deserializedResponse.get("meta"));
+        assertEquals(dataKeyMap.get("name"), actualResponse.get("name"));
+        assertEquals(dataKeyMap.get("email"), actualResponse.get("email"));
+        assertEquals(dataKeyMap.get("gender"), actualResponse.get("gender"));
+        assertEquals(dataKeyMap.get("status"), actualResponse.get("status"));
 
     }
 
@@ -67,7 +69,7 @@ public class GorestStepDefinitions {
 
     @And("the number of users should  be {int}")
     public void theNumberOfUsersShouldBe(int userNumber) {
-        assertEquals(userNumber,json.getList("data").size());
+        assertEquals(userNumber, json.getList("data").size());
         System.out.println(json.getList("data").size());
     }
 
@@ -102,9 +104,9 @@ public class GorestStepDefinitions {
         List<String> genderList = json.getList("data.gender");
         int numOfFemales = 0;
 
-        for(String w : genderList){
+        for (String w : genderList) {
 
-            if(w.equals("female")){
+            if (w.equals("female")) {
 
                 numOfFemales++;
             }
@@ -129,11 +131,11 @@ public class GorestStepDefinitions {
         GoRestPojo gorestPojo = response.as(GoRestPojo.class);
         System.out.println(gorestPojo.getData());
 
-        assertEquals(dataKeyMap.get("name"),gorestPojo.getData().get("name"));
-        assertEquals(dataKeyMap.get("email"),gorestPojo.getData().get("email"));
-        assertEquals(dataKeyMap.get("gender"),gorestPojo.getData().get("gender"));
-        assertEquals(dataKeyMap.get("status"),gorestPojo.getData().get("status"));
-        assertEquals(expectedDataMap.get("meta"),gorestPojo.getMeta());
+        assertEquals(dataKeyMap.get("name"), gorestPojo.getData().get("name"));
+        assertEquals(dataKeyMap.get("email"), gorestPojo.getData().get("email"));
+        assertEquals(dataKeyMap.get("gender"), gorestPojo.getData().get("gender"));
+        assertEquals(dataKeyMap.get("status"), gorestPojo.getData().get("status"));
+        assertEquals(expectedDataMap.get("meta"), gorestPojo.getMeta());
 
     }
 

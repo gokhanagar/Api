@@ -41,7 +41,8 @@ public class PetStoreStepDef {
     @Then("user validates pet exist and sees information")
     public void userValidatesPetExistAndSeesInformation() {
 
-        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {});
+        Map<String, Object> deserializedResponse = response.as(new TypeRef<Map<String, Object>>() {
+        });
         ArrayList<Map<String, Object>> tagValues2 = (ArrayList<Map<String, Object>>) deserializedResponse.get("tags");
 
         ArrayList<Map<String, Object>> tagValues = response.jsonPath().get("tags");
@@ -90,7 +91,7 @@ public class PetStoreStepDef {
         System.out.println(petStorePojo.getName());
 
         //4. way JsonPath
-        JsonPath json= response.jsonPath();
+        JsonPath json = response.jsonPath();
         json.prettyPrint();
 
         assertEquals(13, json.getInt("id"));
@@ -99,19 +100,16 @@ public class PetStoreStepDef {
         System.out.println(json.getString("category.name"));
 
 
-        assertEquals("ross",json.getString("name"));
-        assertEquals("https://www.birdlife.org/birds/eagle/",json.getString("photoUrls[0]"));
+        assertEquals("ross", json.getString("name"));
+        assertEquals("https://www.birdlife.org/birds/eagle/", json.getString("photoUrls[0]"));
 
         assertEquals(1, json.getInt("tags[0].id"));
-        assertEquals("eagle",json.getString("tags[0].name"));
+        assertEquals("eagle", json.getString("tags[0].name"));
 
-        assertEquals("available",json.getString("status"));
-
-
-        List<Map<String, Object>> tags = new ArrayList<Map<String, Object>> ();
+        assertEquals("available", json.getString("status"));
 
 
-
+        List<Map<String, Object>> tags = new ArrayList<Map<String, Object>>();
 
     }
 }

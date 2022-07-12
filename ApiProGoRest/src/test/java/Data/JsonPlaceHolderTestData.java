@@ -5,7 +5,7 @@ import java.util.Map;
 
 public class JsonPlaceHolderTestData {
 
-    public Map<String, Object> expectedDataWithAllKeys(Integer userId, String title, Boolean completed){
+    public Map<String, Object> expectedDataWithAllKeys(Integer userId, String title, Boolean completed) {
 
         Map<String, Object> expectedData = new HashMap<>();
         expectedData.put("userId", userId);
@@ -16,16 +16,16 @@ public class JsonPlaceHolderTestData {
 
     }
 
-    public Map<String, Object> expectedDataWithMissingKeys(Integer userId, String title, Boolean completed){
+    public Map<String, Object> expectedDataWithMissingKeys(Integer userId, String title, Boolean completed) {
         Map<String, Object> expectedData = new HashMap<>();
 
-        if(userId!=null){
+        if (userId != null) {
             expectedData.put("userId", userId);
         }
-        if(title!=null){
+        if (title != null) {
             expectedData.put("title", title);
         }
-        if(completed!=null){
+        if (completed != null) {
             expectedData.put("completed", completed);
         }
 
@@ -33,9 +33,9 @@ public class JsonPlaceHolderTestData {
 
     }
 
-    public String expectedDataInString(Integer userId, String title, Boolean completed){
+    public String expectedDataInString(Integer userId, String title, Boolean completed) {
 
-        String expectedData =  "{" + "\"userId\":" + userId + "," + "\"title\":" + "\"" + title + "\"" + "," + "\"completed\":" + completed + "}";
+        String expectedData = "{" + "\"userId\":" + userId + "," + "\"title\":" + "\"" + title + "\"" + "," + "\"completed\":" + completed + "}";
 
         return expectedData;
 
