@@ -53,5 +53,4 @@ public class Get04 extends JsonPlaceHolderBaserUrl {
 
     }
 
-
 }
