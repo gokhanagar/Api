@@ -67,11 +67,9 @@ public class Post05 extends HerokuappBaseUrl {
         assertEquals(expectedData.getFirstname(), json.getString("booking.firstname"));
         assertEquals(expectedData.getLastname(), json.getString("booking.lastname"));
         assertEquals(expectedData.getTotalprice(), json.getInt("booking.totalprice"));
-        assertEquals(expectedData.isDepositpaid(),json.getBoolean("booking.depositpaid"));
+        assertEquals(expectedData.isDepositpaid(), json.getBoolean("booking.depositpaid"));
         assertEquals(bookingdates.getCheckin(), json.getString("booking.bookingdates.checkin"));
         assertEquals(bookingdates.getCheckout(), json.getString("booking.bookingdates.checkout"));
-
-
 
     }
 

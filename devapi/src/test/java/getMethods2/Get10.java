@@ -4,6 +4,7 @@ import base_urls.GoRestBaseUrl;
 import data.GoRestTestData;
 import io.restassured.response.Response;
 import org.junit.Test;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,14 +37,14 @@ public class Get10 extends GoRestBaseUrl {
      */
 
     @Test
-    public void get01(){
+    public void get01() {
         //1. Step: Set the Url
-        spec.pathParams("first","users","second",2965);
+        spec.pathParams("first", "users", "second", 2965);
 
         //2. Step: Set the expected data
         GoRestTestData dataKey = new GoRestTestData();//Gerekli methodun çağrılması için obje oluşturuyorum.
-        Map<String , String> dataKeyMap = dataKey.dataKeyMap("Mr. Gita Menon", "gita_menon_mr@bayer.com","female","inactive");//İç Map'i oluşturuyorum.
-        Map<String , Object> expectedData = dataKey.expectedDataMap(null,dataKeyMap);//Üst Map'i oluşturan method.
+        Map<String, String> dataKeyMap = dataKey.dataKeyMap("Mr. Gita Menon", "gita_menon_mr@bayer.com", "female", "inactive");//İç Map'i oluşturuyorum.
+        Map<String, Object> expectedData = dataKey.expectedDataMap(null, dataKeyMap);//Üst Map'i oluşturan method.
 
 
         //3. Step: Send the request and Get the Response
@@ -52,11 +53,11 @@ public class Get10 extends GoRestBaseUrl {
         Map<String, Object> actualDataMap = response.as(HashMap.class);//De-Serialization==> Json formatından Java Objesine çevirme
 
         //4. Step: Do Assertion
-        assertEquals(expectedData.get("meta"),actualDataMap.get("meta"));
-        assertEquals(dataKeyMap.get("name"),((Map)actualDataMap.get("data")).get("name"));//Önce "data" elementine ulaşıp buradan aldığım objeyi Map formatına cast ediyorum.
-        assertEquals(dataKeyMap.get("email"),((Map)actualDataMap.get("data")).get("email"));
-        assertEquals(dataKeyMap.get("gender"),((Map)actualDataMap.get("data")).get("gender"));
-        assertEquals(dataKeyMap.get("status"),((Map)actualDataMap.get("data")).get("status"));
+        assertEquals(expectedData.get("meta"), actualDataMap.get("meta"));
+        assertEquals(dataKeyMap.get("name"), ((Map) actualDataMap.get("data")).get("name"));//Önce "data" elementine ulaşıp buradan aldığım objeyi Map formatına cast ediyorum.
+        assertEquals(dataKeyMap.get("email"), ((Map) actualDataMap.get("data")).get("email"));
+        assertEquals(dataKeyMap.get("gender"), ((Map) actualDataMap.get("data")).get("gender"));
+        assertEquals(dataKeyMap.get("status"), ((Map) actualDataMap.get("data")).get("status"));
 
     }
 

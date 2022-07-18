@@ -9,6 +9,7 @@ import org.junit.Test;
 
 import java.util.HashMap;
 import java.util.Map;
+
 import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
@@ -35,9 +36,9 @@ public class Post06 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void post01(){
+    public void post01() {
         //1. Set the Url
-        spec.pathParam("first","todos");
+        spec.pathParam("first", "todos");
 
         //2. Step: Set the expected data
         JsonPlaceHolderData expectedData = new JsonPlaceHolderData();
@@ -49,9 +50,9 @@ public class Post06 extends JsonPlaceHolderBaserUrl {
 
         //4. Step: Do Assertion
         Map<String, Object> actualDataMap = response.as(HashMap.class);
-        assertEquals(expectedDataMap.get("userId"),actualDataMap.get("userId"));
-        assertEquals(expectedDataMap.get("title"),actualDataMap.get("title"));
-        assertEquals(expectedDataMap.get("completed"),actualDataMap.get("completed"));
+        assertEquals(expectedDataMap.get("userId"), actualDataMap.get("userId"));
+        assertEquals(expectedDataMap.get("title"), actualDataMap.get("title"));
+        assertEquals(expectedDataMap.get("completed"), actualDataMap.get("completed"));
 
     }
 }

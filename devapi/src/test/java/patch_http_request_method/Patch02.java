@@ -31,23 +31,23 @@ public class Patch02 extends JsonPlaceHolderBaserUrl {
      */
 
     @Test
-    public void patch01(){
+    public void patch01() {
         //1. Step: Set the Url
-        spec.pathParams("first","todos","second",198);
+        spec.pathParams("first", "todos", "second", 198);
 
         //2. Step: Set the Request Body
         JsonPlaceHolderData requestBody = new JsonPlaceHolderData();
-        Map<String, Object> requestBodyMap = requestBody.expectedDataWithMissingKeys(null,"Wash the dishes", null);
+        Map<String, Object> requestBodyMap = requestBody.expectedDataWithMissingKeys(null, "Wash the dishes", null);
 
         //3. Step: Send the Patch Request get the response
         Response response = given().spec(spec).contentType(ContentType.JSON).body(requestBodyMap).when().patch("/{first}/{second}");
         response.prettyPrint();
 
         //4. Step: Do Assertion:
-        Map<String,Object> mapToAssertAllDetails = requestBody.expectedDataWithAllKeys(10,"Wash the dishes",true);
-        response.then().assertThat().statusCode(200).body("title",equalTo(mapToAssertAllDetails.get("title")),
-                "userId",equalTo(mapToAssertAllDetails.get("userId")),
-                "completed",equalTo(mapToAssertAllDetails.get("completed")));
+        Map<String, Object> mapToAssertAllDetails = requestBody.expectedDataWithAllKeys(10, "Wash the dishes", true);
+        response.then().assertThat().statusCode(200).body("title", equalTo(mapToAssertAllDetails.get("title")),
+                "userId", equalTo(mapToAssertAllDetails.get("userId")),
+                "completed", equalTo(mapToAssertAllDetails.get("completed")));
     }
 
 }

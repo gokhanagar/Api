@@ -32,7 +32,7 @@ public class Get11 extends GoRestBaseUrl {
      */
 
     @Test
-    public void get01(){
+    public void get01() {
         //1. Step: Set the Url
         spec.pathParam("first", "users");
 
@@ -48,8 +48,8 @@ public class Get11 extends GoRestBaseUrl {
                 then().
                 assertThat().
                 statusCode(200).
-                body("meta.pagination.limit",equalTo(10),
-                       "meta.pagination.links.current", equalTo("https://gorest.co.in/public/v1/users?page=1"),
+                body("meta.pagination.limit", equalTo(10),
+                        "meta.pagination.links.current", equalTo("https://gorest.co.in/public/v1/users?page=1"),
                         "data.id", hasSize(10),
                         "data.status", hasItem("active"),
                         "data.name", hasItems("Aalok Acharya DDS", "Acharyasuta Chattopadhyay DC", "Shresth Nehru"));
@@ -61,14 +61,14 @@ public class Get11 extends GoRestBaseUrl {
         List<String> genders = json.getList("data.gender");
         System.out.println(genders);
 
-        int numOfFemales=0;
-        for(String w: genders){
-            if(w.equalsIgnoreCase("female")){
+        int numOfFemales = 0;
+        for (String w : genders) {
+            if (w.equalsIgnoreCase("female")) {
                 numOfFemales++;
             }
         }
         System.out.println(numOfFemales);//6
-        assertTrue(numOfFemales > genders.size()-numOfFemales);
+        assertTrue(numOfFemales > genders.size() - numOfFemales);
 
         //2. Yol:  Tüm bayan ve bayları ayrı ayrı Groovy ile çekelim.
         List<String> femaleList = json.getList("data.findAll{it.gender=='female'}.gender");
@@ -77,7 +77,7 @@ public class Get11 extends GoRestBaseUrl {
         List<String> maleList = json.getList("data.findAll{it.gender=='male'}.gender");
         System.out.println(maleList);
 
-        assertTrue(femaleList.size()>maleList.size());
+        assertTrue(femaleList.size() > maleList.size());
 
     }
 }

@@ -68,7 +68,7 @@ public class Post07 extends HerokuappBaseUrl {
 
         Map<String, Object> actualDataMap = response.as(HashMap.class);
 
-        assertEquals(200,response.statusCode());
+        assertEquals(200, response.statusCode());
 
         assertEquals(expectedDataMap.get("firstname"), ((Map) actualDataMap.get("booking")).get("firstname"));
         assertEquals(expectedDataMap.get("lastname"), ((Map) actualDataMap.get("booking")).get("lastname"));

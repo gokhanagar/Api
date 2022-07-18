@@ -41,19 +41,19 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
 
 
     @Test
-    public void get01(){
+    public void get01() {
 
         //1. Step: Set the Url
-        spec.pathParams("first","todos","second",2);
+        spec.pathParams("first", "todos", "second", 2);
 
         //2. Step: Set the expected data
 
-        Map<String,Object> expectedData = new HashMap<>();
-        expectedData.put("userId",1);
-        expectedData.put("title","quis ut nam facilis et officia qui");
-        expectedData.put("completed",false);
-        expectedData.put("StatusCode",200);
-        expectedData.put("Via","1.1 vegur");
+        Map<String, Object> expectedData = new HashMap<>();
+        expectedData.put("userId", 1);
+        expectedData.put("title", "quis ut nam facilis et officia qui");
+        expectedData.put("completed", false);
+        expectedData.put("StatusCode", 200);
+        expectedData.put("Via", "1.1 vegur");
         expectedData.put("Server", "cloudflare");
 
         //3. Step: Send the request and get the Response
@@ -63,23 +63,23 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
 
 
         //4. Step: Do Assertion
-        assertEquals(expectedData.get("userId"),actualData.get("userId"));
-        assertEquals(expectedData.get("title"),actualData.get("title"));
-        assertEquals(expectedData.get("completed"),actualData.get("completed"));
-        assertEquals(expectedData.get("StatusCode"),response.getStatusCode());
+        assertEquals(expectedData.get("userId"), actualData.get("userId"));
+        assertEquals(expectedData.get("title"), actualData.get("title"));
+        assertEquals(expectedData.get("completed"), actualData.get("completed"));
+        assertEquals(expectedData.get("StatusCode"), response.getStatusCode());
         assertEquals(expectedData.get("Via"), response.getHeader("Via"));
         assertEquals(expectedData.get("Server"), response.getHeader("Server"));
 
     }
 
     @Test
-    public void get02(){
+    public void get02() {
         //1. Step: Set the Url
-        spec.pathParams("first","todos","second",2);
+        spec.pathParams("first", "todos", "second", 2);
 
         //2. Step: Set the expected data
         JsonPlaceHolderData expectedData = new JsonPlaceHolderData();
-        Map<String,Object> expectedDataMap = expectedData.expectedDataWithAllKeys(1, "quis ut nam facilis et officia qui",false);
+        Map<String, Object> expectedDataMap = expectedData.expectedDataWithAllKeys(1, "quis ut nam facilis et officia qui", false);
         expectedDataMap.put("StatusCode", 200);
         expectedDataMap.put("Via", "1.1 vegur");
         expectedDataMap.put("Server", "cloudflare");
@@ -92,10 +92,10 @@ public class Get08 extends JsonPlaceHolderBaserUrl {
 
         //4. Step: Do Assertion
 
-        assertEquals(expectedDataMap.get("userId"),actualData.get("userId"));
-        assertEquals(expectedDataMap.get("title"),actualData.get("title"));
-        assertEquals(expectedDataMap.get("completed"),actualData.get("completed"));
-        assertEquals(expectedDataMap.get("StatusCode"),response.getStatusCode());
+        assertEquals(expectedDataMap.get("userId"), actualData.get("userId"));
+        assertEquals(expectedDataMap.get("title"), actualData.get("title"));
+        assertEquals(expectedDataMap.get("completed"), actualData.get("completed"));
+        assertEquals(expectedDataMap.get("StatusCode"), response.getStatusCode());
         assertEquals(expectedDataMap.get("Via"), response.getHeader("Via"));
         assertEquals(expectedDataMap.get("Server"), response.getHeader("Server"));
 
