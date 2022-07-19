@@ -139,7 +139,7 @@ public class jsonPlaceHolderStepDefinitions {
         assertEquals(expectedDataMap.get("title"), actualDataMap.get("title"));
         assertEquals(expectedDataMap.get("completed"), actualDataMap.get("completed"));
     }
-
+    //Post method
 
     @And("user creates a booking and see informationn")
     public void userCreatesABookingAndSeeInformationn() {

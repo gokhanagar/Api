@@ -12,10 +12,3 @@ Feature: heroku app testing
     And user creates a booking and see informationn
 
 
-
-
-
-
-
-
-
