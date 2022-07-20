@@ -30,6 +30,8 @@ public class BookingPojo {
         this.bookingdates = bookingdates;
     }
 
+
+
     public String getFirstname() {return firstname;}
     public void setFirstname(String firstname) {this.firstname = firstname;}
     public String getLastname() {return lastname;}
