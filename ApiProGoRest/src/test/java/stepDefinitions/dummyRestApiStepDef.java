@@ -29,7 +29,6 @@ public class dummyRestApiStepDef {
 
     }
 
-
     @And("{string} and {string} are among the employees")
     public void andAreAmongTheEmployees(String employee1, String employee2) {
         Set<String> employees = new HashSet<String>();
