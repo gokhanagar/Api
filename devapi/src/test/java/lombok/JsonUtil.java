@@ -39,5 +39,4 @@ public class JsonUtil {
 
         return jsonResult;
     }
-
 }
