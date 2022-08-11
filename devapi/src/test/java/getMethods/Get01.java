@@ -60,7 +60,6 @@ public class Get01 extends HerokuappBaseUrl {
         assertEquals(json.getString("bookingdates.checkin"), "2021-08-10");
         assertEquals(json.getString("bookingdates.checkout"), "2022-01-15");
 
-
     }
 
 
