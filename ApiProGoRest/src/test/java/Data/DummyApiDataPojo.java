@@ -62,4 +62,6 @@ public class DummyApiDataPojo {
                 ", profileImage='" + profile_image + '\'' +
                 '}';
     }
+
+    
 }
