@@ -13,6 +13,7 @@ import static io.restassured.RestAssured.given;
 import static org.hamcrest.CoreMatchers.equalTo;
 
 public class Post3 extends JsonPlaceHolderBaserUrl {
+
     /*
     When
         I send Post request to the url https://jsonplaceholder.typicode.com/todos

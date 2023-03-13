@@ -12,6 +12,7 @@ import static io.restassured.RestAssured.given;
 import static org.junit.Assert.assertEquals;
 
 public class Post1 extends HerokuappBaseUrl {
+
     /*
     When I send POST Request to the Url https://restful-booker.herokuapp.com/booking
     with th request body {
