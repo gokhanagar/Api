@@ -40,4 +40,6 @@ public class HerOkuAppPojo {
                 ", additionalneeds='" + additionalneeds + '\'' +
                 '}';
     }
+
+
 }
