@@ -77,7 +77,6 @@ public class Post1 extends HerokuappBaseUrl {
         assertEquals(bookingDates.get("checkin"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkin"));
         assertEquals(bookingDates.get("checkout"), ((Map) ((Map) actualData.get("booking")).get("bookingdates")).get("checkout"));
 
-
     }
 
 }
