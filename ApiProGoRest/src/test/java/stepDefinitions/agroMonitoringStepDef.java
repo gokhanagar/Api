@@ -27,6 +27,8 @@ public class agroMonitoringStepDef {
                 when().post();
         response.prettyPrint();
 
+        //RestAssured.given().accept("application/json").accept("stage").body().when().post();
+
         //4.Step: Do Assertion
         //4.Step: Do Assertions
         //1.Way:
