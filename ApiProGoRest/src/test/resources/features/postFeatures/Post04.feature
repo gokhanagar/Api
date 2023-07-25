@@ -9,6 +9,3 @@ Feature: dummy rest api testing
 
 
 
-
-
-
