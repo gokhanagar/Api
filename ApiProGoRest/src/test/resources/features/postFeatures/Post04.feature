@@ -8,4 +8,3 @@ Feature: dummy rest api testing
     And user creates a booking
 
 
-
