@@ -6,4 +6,3 @@ Feature: Json Place holder testing
   Scenario:
     When I send DELETE request to the url "/todos/198"
     Then response body is
-
