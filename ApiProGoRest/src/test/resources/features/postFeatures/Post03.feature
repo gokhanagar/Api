@@ -9,5 +9,3 @@ Feature: agro monitoring testing
 
 
 
-
-
