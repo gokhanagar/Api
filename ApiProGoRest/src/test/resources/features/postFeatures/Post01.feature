@@ -13,25 +13,3 @@ Feature: heroku app testing
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
