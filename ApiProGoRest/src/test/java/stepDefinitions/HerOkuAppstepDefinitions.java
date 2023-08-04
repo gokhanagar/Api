@@ -121,6 +121,7 @@ public class HerOkuAppstepDefinitions {
         HerOkuAppData herOkuAppData = new HerOkuAppData();
         Map<String, Object> dataKeyMap = herOkuAppData.dataKeyMap("Eric", "Wilson", 493, true);
         Map<String, Object> dataMap = herOkuAppData.dataMap("2017-03-23", "2019-03-05");
+
         //Do Assertions
         HerOkuAppPojo herokuapp = response.as(HerOkuAppPojo.class);
         assertEquals(dataKeyMap.get("firstname"), herokuapp.getFirstname());
